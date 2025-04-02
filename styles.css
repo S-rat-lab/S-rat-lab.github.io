@@ -1,0 +1,167 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background Image */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/home/labrat/Desktop/Playground/sharat/hobby/WhatsApp Image 2025-04-03 at 1.51.00 AM(1).jpeg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+    border-radius: 5px;
+}
+
+h1 {
+    margin-bottom: 15px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+.active {
+    background-color: #444;
+    font-weight: bold;
+}
+
+main {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+}
+
+/* Home page specific styles */
+.home-main {
+    text-align: center;
+}
+
+.choice-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.choice-box {
+    width: 45%;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.choice-box:hover {
+    transform: translateY(-5px);
+}
+
+.choice-box h3 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.choice-box img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.choice-button {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.choice-button:hover {
+    background-color: #555;
+}
+
+/* Content page styles */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+.image-container p {
+    font-size: 18px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #777;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .choice-box {
+        width: 90%;
+    }
+}

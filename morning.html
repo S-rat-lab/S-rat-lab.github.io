@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAVUTTIIIII</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>VAVUTTIIIII</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="morning.html" class="active">MS VAVUTTI</a></li>
+                <li><a href="night.html">GOOD NIGHT</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div id="birthday-question" class="question-container">
+            <h2>When is Vavutti's birthday??</h2>
+            <div class="date-picker">
+                <label for="birthday">Select a date:</label>
+                <input type="date" id="birthday" name="birthday">
+                <button id="check-answer" class="submit-button">Submit</button>
+            </div>
+            <p id="error-message" class="error-message"></p>
+        </div>
+        
+        <div id="morning-content" class="content-container hidden">
+            <h2>Vavutti</h2>
+            <div class="image-container">
+                <!-- Replace with your actual image path -->
+                <img src="/api/placeholder/600/400" alt="Happy in the Ms Vavutti">
+                <p>This is me happy in the Ms Vavutti!</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 My Website</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const birthdayQuestion = document.getElementById('birthday-question');
+            const morningContent = document.getElementById('morning-content');
+            const birthdayInput = document.getElementById('birthday');
+            const checkAnswerBtn = document.getElementById('check-answer');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Set today as the default date
+            const today = new Date();
+            const dateString = today.toISOString().split('T')[0];
+            birthdayInput.value = dateString;
+            
+            checkAnswerBtn.addEventListener('click', function() {
+                const selectedDate = new Date(birthdayInput.value);
+                const month = selectedDate.getMonth() + 1; // Months are 0-based
+                const day = selectedDate.getDate();
+                
+                // Check if the date matches Vavutti's birthday - March 29, 1996
+                const correctMonth = 3; // March
+                const correctDay = 29;
+                const correctYear = 1996;
+                const selectedYear = selectedDate.getFullYear();
+                
+                if (month === correctMonth && day === correctDay && selectedYear === correctYear) {
+                    // Correct answer - redirect to vavu page
+                    window.location.href = "vavu.html";
+                } else {
+                    // Wrong answer
+                    errorMessage.textContent = "That's not Vavutti's birthday. Try again!";
+                    errorMessage.classList.add('show');
+                    
+                    // Hide the error message after 3 seconds
+                    setTimeout(function() {
+                        errorMessage.classList.remove('show');
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

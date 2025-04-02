@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOW MUCH MORE CAN YOU FUCK UP</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .vavu-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            height: 100vh; /* Increased height to full viewport height */
+        }
+        
+        .vavu-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInGrow 1.5s ease forwards;
+        }
+        
+        @keyframes fadeInGrow {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .vavu-message {
+            font-size: 48px;
+            font-weight: bold;
+            color: #e74c3c;
+            text-transform: uppercase;
+            margin-top: 30px;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e74c3c"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center;
+            opacity: 0;
+            z-index: 10;
+        }
+        
+        /* Bottom heart animation */
+        .heart-bottom {
+            animation: float-heart-bottom 4s ease-in forwards;
+        }
+        
+        @keyframes float-heart-bottom {
+            0% {
+                transform: translateY(100%) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300%) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        /* Left heart animation */
+        .heart-left {
+            animation: float-heart-left 4s ease-in forwards;
+        }
+        
+        @keyframes float-heart-left {
+            0% {
+                transform: translateX(-100%) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(300%) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        /* Right heart animation */
+        .heart-right {
+            animation: float-heart-right 4s ease-in forwards;
+        }
+        
+        @keyframes float-heart-right {
+            0% {
+                transform: translateX(100%) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-300%) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        #hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HOW MUCH MORE CAN YOU FUCK UP</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="morning.html">GOOD MORNING</a></li>
+                <li><a href="night.html">GOOD NIGHT</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="vavu-container">
+            <!-- Using relative path for better compatibility -->
+            <img src="vavu-image.jpeg" alt="Vavu Image" class="vavu-image">
+            
+            <p class="vavu-message">LOVE YOU VAVU</p>
+            
+            <!-- Hearts container -->
+            <div id="hearts-container"></div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 My Website</p>
+    </footer>
+
+    <script>
+        // Create floating hearts
+        document.addEventListener('DOMContentLoaded', function() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const containerWidth = heartsContainer.offsetWidth;
+            const containerHeight = heartsContainer.offsetHeight;
+            
+            // Create initial hearts from all sides
+            for (let i = 0; i < 10; i++) {
+                createHeartFromBottom(heartsContainer, containerWidth);
+                createHeartFromLeft(heartsContainer, containerHeight);
+                createHeartFromRight(heartsContainer, containerHeight);
+            }
+            
+            // Continue creating hearts periodically
+            setInterval(function() {
+                // Randomly decide which side to create a heart from
+                const side = Math.floor(Math.random() * 3);
+                
+                if (side === 0) {
+                    createHeartFromBottom(heartsContainer, containerWidth);
+                } else if (side === 1) {
+                    createHeartFromLeft(heartsContainer, containerHeight);
+                } else {
+                    createHeartFromRight(heartsContainer, containerHeight);
+                }
+            }, 200); // Create hearts more frequently
+        });
+        
+        function createHeartFromBottom(container, containerWidth) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart', 'heart-bottom');
+            
+            // Random position along bottom
+            const leftPos = Math.floor(Math.random() * containerWidth);
+            heart.style.left = leftPos + 'px';
+            heart.style.bottom = '0';
+            
+            // Random size between 20px and 40px
+            const size = 20 + Math.floor(Math.random() * 20);
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            
+            // Random delay
+            const delay = Math.random() * 2;
+            heart.style.animationDelay = delay + 's';
+            
+            // Fixed duration of 4 seconds
+            heart.style.animationDuration = '4s';
+            
+            container.appendChild(heart);
+            
+            // Remove heart after animation completes
+            setTimeout(function() {
+                heart.remove();
+            }, 4000 + (delay * 1000));
+        }
+        
+        function createHeartFromLeft(container, containerHeight) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart', 'heart-left');
+            
+            // Random position along left side
+            const topPos = Math.floor(Math.random() * containerHeight);
+            heart.style.left = '0';
+            heart.style.top = topPos + 'px';
+            
+            // Random size between 20px and 40px
+            const size = 20 + Math.floor(Math.random() * 20);
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            
+            // Random delay
+            const delay = Math.random() * 2;
+            heart.style.animationDelay = delay + 's';
+            
+            // Fixed duration of 4 seconds
+            heart.style.animationDuration = '4s';
+            
+            container.appendChild(heart);
+            
+            // Remove heart after animation completes
+            setTimeout(function() {
+                heart.remove();
+            }, 4000 + (delay * 1000));
+        }
+        
+        function createHeartFromRight(container, containerHeight) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart', 'heart-right');
+            
+            // Random position along right side
+            const topPos = Math.floor(Math.random() * containerHeight);
+            heart.style.right = '0';
+            heart.style.top = topPos + 'px';
+            
+            // Random size between 20px and 40px
+            const size = 20 + Math.floor(Math.random() * 20);
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            
+            // Random delay
+            const delay = Math.random() * 2;
+            heart.style.animationDelay = delay + 's';
+            
+            // Fixed duration of 4 seconds
+            heart.style.animationDuration = '4s';
+            
+            container.appendChild(heart);
+            
+            // Remove heart after animation completes
+            setTimeout(function() {
+                heart.remove();
+            }, 4000 + (delay * 1000));
+        }
+    </script>
+</body>
+</html>
